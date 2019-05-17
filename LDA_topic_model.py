@@ -28,7 +28,7 @@ for i, topic_dist in enumerate(topic_word):
 
 print(topic_words)
 
-from svd_dimensionality import lsne_model
+from svd_dimensionality import tsne_model
 tsne_lda = tsne_model.fit_transform(X_topics) #import from svd model
 
 doc_topic = lda_model.doc_topic_
