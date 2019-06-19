@@ -39,3 +39,26 @@ for i, tweet in enumerate(corpus):
 lda_df = pd.DataFrame(tsne_lda, columns = ['x', 'y'])
 lda_df['topic'] = lda_keys
 lda_df['topic'] = lda_df['topic'].map(int)
+
+#pyLDAvis to view keyword salience in each topic. Note topic number assignments do not match above, but keywords do. 
+#Help assign topic names
+
+corpous['tokens'] = corpous['column'].map(tokenize_only)
+lda_df['len_docs'] = corpus['tokens'].map(len)
+
+def prepareLDAData():
+    data = {
+        'vocab': vocab,
+        'doc_topic_dists': lda_model.doc_topic_,
+        'doc_lengths': list(lda_df['len_docs']),
+        'term_frequency':cvectorizer.vocabulary_,
+        'topic_term_dists': lda_model.components_
+    } 
+    return data
+
+ldadata = prepareLDAData()
+import pyLDAvis
+pyLDAvis.enable_notebook()
+prepared_data = pyLDAvis.prepare(**ldadata)
+
+pyLDAvis.display(prepared_data)
