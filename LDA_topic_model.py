@@ -28,10 +28,14 @@ for i, topic_dist in enumerate(topic_word):
 
 print(topic_words)
 
-from svd_dimensionality import tsne_model
+from svd_dimensionality import lsne_model
 tsne_lda = tsne_model.fit_transform(X_topics) #import from svd model
 
 doc_topic = lda_model.doc_topic_
 lda_keys = []
 for i, tweet in enumerate(corpus):
     lda_keys += [doc_topic[i].argmax()]
+    
+lda_df = pd.DataFrame(tsne_lda, columns = ['x', 'y'])
+lda_df['topic'] = lda_keys
+lda_df['topic'] = lda_df['topic'].map(int)
