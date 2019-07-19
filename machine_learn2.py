@@ -11,7 +11,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as numpy
 from sklearn.pipeline import Pipeline
-import string
 from nltk.stem import PorterStemmer
 from nltk import word_tokenize
 from sklearn.model_selection import cross_val_score
