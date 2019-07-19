@@ -3,7 +3,6 @@ import numpy
 import nltk
 import sklearn
 import re
-import os
 from pandas import DataFrame
 from nltk.stem.snowball import SnowballStemmer
 from sklearn.feature_extraction.text import TfidfVectorizer
